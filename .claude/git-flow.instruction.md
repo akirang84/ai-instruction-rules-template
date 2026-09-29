@@ -1,66 +1,246 @@
-# Git flow: branch → PR → squash merge
+## Git Workflow
 
-Every change, big or small, follows this flow. Never commit directly to `main` or `staging`, never push to those branches, and never force-push.
+The repository follows a strict **feature-branch + Pull Request** workflow.
+Agent will NEVER update this rule, must follow.
 
-## 1. Start a branch from `main`
+### 1. Protected `main`
 
-Fetch and create a topic branch from the latest `origin/main`:
+* `main` is the only integration branch.
+* NEVER commit directly to `main`.
+* NEVER push directly to `main`.
+* NEVER merge directly into `main`.
+* NEVER use another branch as an integration target unless explicitly instructed.
+* All changes MUST enter `main` through a Pull Request.
 
-```bash
-git fetch origin
-git switch -c <type>/<topic> origin/main
-```
+The required flow is:
 
-Examples: `feat/account-search`, `fix/login-redirect`, `docs/git-flow`. Use `git switch -C <branch> origin/main` only when intentionally restarting work on a same-named branch after confirming the old branch is no longer needed.
+`main <- Pull Request <- task branch`
 
-## 2. Change, verify, commit
+Never use:
 
-- Check `git status` and inspect the diff before committing.
-- Run the relevant lint, typecheck, and tests; report any checks that could not run.
-- Commit in small, coherent pieces. Commit message is title only, under about 50 characters:
-  `<type>(<scope>): <short description>`
-- Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
-- Do not add a commit body, notes, trailers, `Co-Authored-By`, or session lines.
+`main <- direct commit`
 
-## 3. Push the topic branch
+`main <- direct push`
 
-```bash
-git push -u origin <branch>
-```
+`feature-a <- feature-b <- main`
 
-Push only the topic branch. Never force-push.
+### 2. One Task = One New Branch
 
-## 4. Open a pull request
+Every feature, bug fix, refactor, improvement, or code modification MUST be performed on a new branch.
 
-- PR title only, in Conventional Commits format; the title drives the version bump.
-- Empty PR description: no summary, test plan, notes, or generated-by footer. Use `gh pr create --body ""`.
-- PR into `main` is the production path (API on Railway, web on Vercel).
-- PR into `staging` is the staging path (API on Render). Confirm the intended target with the user if it is not clear from the task.
+Before modifying code:
 
-## 5. Squash merge
+1. Check the current branch.
+2. Check the working tree.
+3. Preserve and understand any pre-existing changes.
+4. Create a new branch from the latest appropriate `main`.
 
-Always squash merge with an empty commit body:
+Branch naming:
 
-```bash
-gh pr merge --squash --body ""
-```
+* `feature/<description>` — new functionality
+* `fix/<description>` — bug fix
+* `refactor/<description>` — refactoring
+* `chore/<description>` — maintenance
+* `docs/<description>` — documentation
 
-The remote branch is deleted automatically after merge. Drop the local copy after updating `main`:
+Use short, descriptive, kebab-case names.
 
-```bash
-git switch main
-git pull
-git branch -D <branch>
-```
+### 3. Never Work Directly on `main`
 
-Only delete the local topic branch after verifying the PR is merged and the local work is no longer needed.
+If the agent starts on `main`:
 
-## 6. After merge
+* Do NOT modify files first.
+* Create the task branch before making any code changes.
 
-Never push more commits to a merged branch or reuse its PR. Follow-up work starts from the latest `main` and gets a new PR. A same-named topic branch is allowed when created from the latest `origin/main`.
+If the agent starts on another branch:
 
-## Safety and permissions
+* Determine whether that branch belongs to the current task.
+* Do not reuse an unrelated branch.
+* Create a new task branch when necessary.
 
-- Do not stage unrelated user changes. Inspect status and diff first; ask before including changes you did not make or do not understand.
-- Do not merge a PR, delete a branch containing unmerged work, or alter shared history unless explicitly requested by the user. The standard flow describes the required process; user authorization is still needed for externally visible merge actions.
-- If required branch protections, remote state, or CI checks prevent the flow, report the blocker; never bypass protections.
+### 4. Protect Existing User Changes
+
+The working tree may contain changes that were made before the current task.
+
+The agent MUST:
+
+* Preserve all pre-existing changes.
+* Never overwrite, discard, reset, or revert them.
+* Never include unrelated changes in the current task's commit.
+* Never assume uncommitted changes belong to the current task.
+
+NEVER run destructive commands such as:
+
+* `git reset --hard`
+* `git clean -fd`
+* `git restore <file>`
+* `git checkout -- <file>`
+* `git rebase`
+* `git push --force`
+
+unless explicitly instructed by the user.
+
+If the existing Git state makes the requested workflow unsafe or ambiguous, stop and ask for clarification.
+
+### 5. Branch Isolation
+
+Each task branch should contain only changes required for that task.
+
+Do NOT:
+
+* Mix unrelated features or fixes.
+* Perform opportunistic refactoring.
+* Rename unrelated files or symbols.
+* Reformat unrelated code.
+* Modify unrelated configuration.
+* Commit pre-existing user changes.
+
+If unrelated changes are already present, leave them untouched.
+
+### 6. Commit Rules
+
+Create commits only when they contain changes belonging to the current task.
+
+Before committing:
+
+1. Run `git status`.
+2. Review the diff.
+3. Verify that only intended files are changed.
+4. Stage only the required files.
+5. Verify the staged diff.
+6. Create a clear commit message.
+
+Do NOT blindly use:
+
+`git add .`
+
+or:
+
+`git add -A`
+
+when unrelated changes may exist.
+
+Never commit:
+
+* Secrets
+* API keys
+* Credentials
+* Private keys
+* `.env` files containing secrets
+* Other sensitive information
+
+Do not amend existing commits unless explicitly instructed.
+
+### 7. Keep Branches Based on `main`
+
+Task branches should be created from `main`.
+
+Do not create a task branch from another task branch.
+
+Do not merge one task branch into another.
+
+Do not create long-lived integration branches.
+
+If the task requires changes from another unfinished branch, stop and ask for explicit instructions rather than creating an implicit branch dependency.
+
+### 8. Validation Before PR
+
+Before creating a Pull Request:
+
+* Run the relevant tests.
+* Run linting and formatting checks when applicable.
+* Run build/type-check validation when applicable.
+* Review the final Git diff.
+* Verify that no unrelated files or changes are included.
+* Verify the branch contains only the intended task changes.
+
+If validation fails, do not hide or ignore the failure. Report it clearly.
+
+### 9. Pull Request Is Mandatory
+
+Every task intended to be integrated into the repository MUST be submitted through a Pull Request.
+
+The agent should:
+
+1. Commit the completed task.
+2. Push the task branch to the remote.
+3. Create a Pull Request targeting `main`.
+4. Provide a concise PR title.
+5. Provide a useful PR description containing:
+
+   * What changed
+   * Why it changed
+   * Important implementation details
+   * Tests and validation performed
+   * Known limitations or remaining issues
+
+The PR target MUST be:
+
+`main`
+
+Do not create PRs targeting another task branch or integration branch unless explicitly instructed.
+
+### 10. Never Auto-Merge
+
+Creating a Pull Request does NOT authorize merging it.
+
+The agent MUST NOT:
+
+* Merge its own PR.
+* Approve its own PR.
+* Bypass required reviews.
+* Bypass branch protection.
+* Force-push to bypass review or CI.
+* Automatically merge after creating the PR.
+
+The PR must remain pending for the normal review/merge process unless the user explicitly instructs the agent to perform a permitted merge.
+
+### 11. Git History
+
+Protect repository history.
+
+Do not:
+
+* Rewrite shared branch history.
+* Rebase shared branches.
+* Force-push.
+* Amend commits that may already have been pushed.
+* Delete or rewrite commits belonging to other work.
+
+Any history-rewriting operation requires explicit user instruction.
+
+### 12. Standard Agent Workflow
+
+For every code task, follow this sequence:
+
+1. `git status`
+2. `git branch --show-current`
+3. Inspect and preserve existing changes.
+4. Update local `main` when appropriate.
+5. Create a new task branch from `main`.
+6. Implement the task.
+7. Run relevant validation.
+8. Review `git diff`.
+9. Stage only task-related changes.
+10. Commit.
+11. Push the task branch.
+12. Create a PR targeting `main`.
+13. Report the PR and validation results.
+14. Stop and wait for the normal review/merge process.
+
+### 13. Final Rule
+
+When in doubt, prefer **preserving existing work and stopping for clarification** over performing a potentially destructive Git operation.
+
+The repository's integration model is:
+
+`main`
+`  ↑`
+`Pull Request`
+`  ↑`
+`feature/* | fix/* | refactor/* | chore/* | docs/*`
+
+`main` is the single integration point.
+All task work happens on isolated branches.
+All integration happens through Pull Requests.
+Never bypass this workflow unless explicitly instructed.
