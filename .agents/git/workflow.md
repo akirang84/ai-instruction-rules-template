@@ -99,7 +99,7 @@ If unrelated changes are already present, leave them untouched.
 
 ### 6. Commit Rules
 
-Create commits only when they contain changes belonging to the current task.
+Create exactly one commit per task, containing only changes belonging to that task.
 
 Before committing:
 
@@ -226,7 +226,7 @@ For every code task, follow this sequence:
 11. Push the task branch.
 12. Create a PR targeting `main`.
 13. Report the PR and validation results.
-14. Stop and wait for the normal review/merge process.
+14. Stop and wait for manual review/merge process.
 
 ### 13. Final Rule
 
