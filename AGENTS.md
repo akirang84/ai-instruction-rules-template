@@ -23,6 +23,12 @@ Follow `.agents/git/workflow.md`.
 
 Never bypass the repository branch and Pull Request workflow.
 
+## Context Management
+
+After a feature is completed (PR created and results reported), end the final message by reminding the user to run `/clear` before starting the next task, to save tokens.
+
+Do not carry context from a completed feature into the next one.
+
 ## Priority
 
 When instructions conflict:
