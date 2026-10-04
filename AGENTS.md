@@ -23,6 +23,16 @@ Follow `.agents/git/workflow.md`.
 
 Never bypass the repository branch and Pull Request workflow.
 
+## Testing
+
+When implementing or verifying a requirement:
+
+1. Read `.agents/requirements/testing.md` to determine what must be tested.
+2. Read `.agents/coding/testing.md` to determine how the tests must be executed.
+3. For user-facing functionality, prioritize E2E testing through the Front End.
+4. Do not consider a feature verified based only on unit tests or API responses.
+5. Do not declare success until the relevant business rules, actors, states, and invariants have been verified.
+
 ## Context Management
 
 After a feature is completed (PR created and results reported), end the final message by reminding the user to run `/clear` before starting the next task, to save tokens.
