@@ -227,6 +227,7 @@ For every code task, follow this sequence:
 12. Create a PR targeting `main`.
 13. Report the PR and validation results.
 14. Stop and wait for manual review/merge process.
+15. After PR is merged, delete the task branch locally and remotely (if applicable).
 
 ### 13. Final Rule
 
