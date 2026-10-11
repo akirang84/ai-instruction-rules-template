@@ -88,5 +88,5 @@ Common rules (`coding/`, `coding/design/`, `security/`, `requirements/`) apply e
 ### Frontend
 
 - [`frontend/shared.md`](frontend/shared.md) — shared baseline for web and mobile (Expo, React Native, Tamagui).
-- [`web/README.md`](web/README.md) — web specification (rendering, performance and SEO, accessibility, security, delivery).
-- [`mobile/README.md`](mobile/README.md) — mobile specification (platform, performance and offline, UX, security, release).
+- [`frontend/web/README.md`](frontend/web/README.md) — web specification (rendering, performance and SEO, accessibility, security, delivery).
+- [`frontend/mobile/README.md`](frontend/mobile/README.md) — mobile specification (platform, performance and offline, UX, security, release).
