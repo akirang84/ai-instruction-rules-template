@@ -2,6 +2,7 @@
 
 ## Core Principles
 
+- The index of all agent rules is `.agents/README.md`. Start there.
 - Follow the repository Git workflow defined in `.agents/git/workflow.md`.
 - Follow the requirements engineering rules defined in `.agents/requirements/`.
 - Follow the coding and architecture rules defined in `.agents/coding/`.
