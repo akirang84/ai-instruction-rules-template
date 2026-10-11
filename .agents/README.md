@@ -71,3 +71,22 @@ Mandatory for every platform and app. Platform-specific specs (web, mobile) must
 - [`coding/design/scalability.md`](coding/design/scalability.md)
 - [`coding/design/ecosystem-connectivity.md`](coding/design/ecosystem-connectivity.md) — comprehensiveness and connectivity.
 - [`coding/design/maintainability-extensibility.md`](coding/design/maintainability-extensibility.md)
+
+## Stack and Platform Rules
+
+Common rules (`coding/`, `coding/design/`, `security/`, `requirements/`) apply everywhere. Stack and platform rules extend them and never weaken them.
+
+### Backend, Data, Security, DevOps
+
+- [`backend/nestjs.md`](backend/nestjs.md) — NestJS and TypeScript backend.
+- [`database/database.md`](database/database.md) — database, ORM, migrations, time.
+- [`security/security.md`](security/security.md) — authentication and security.
+- [`devops/deployment.md`](devops/deployment.md) — environments and deployment.
+- [`devops/ci-cd-and-release.md`](devops/ci-cd-and-release.md) — pipeline, release, infrastructure.
+- [`devops/observability-and-operations.md`](devops/observability-and-operations.md) — logs, metrics, alerts, runbooks.
+
+### Frontend
+
+- [`frontend/shared.md`](frontend/shared.md) — shared baseline for web and mobile (Expo, React Native, Tamagui).
+- [`web/README.md`](web/README.md) — web specification (rendering, performance and SEO, accessibility, security, delivery).
+- [`mobile/README.md`](mobile/README.md) — mobile specification (platform, performance and offline, UX, security, release).
