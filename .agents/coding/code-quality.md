@@ -17,6 +17,11 @@
 - Release resources reliably, including on failure paths. Make retries, concurrency, and repeated requests safe where those behaviors are possible.
 - Do not expose secrets, credentials, personal data, or sensitive payloads in logs, error messages, or test fixtures.
 - Keep secrets out of source control and load environment-specific configuration through the project's established mechanism.
+- Use strict typing and avoid `any`; model outcomes and errors as discriminated unions where the language supports it.
+- Keep domain logic deterministic and framework-free. Inject clocks, providers, repositories, and randomness.
+- Use decimal-safe arithmetic for money, prices, fees, taxes, and fractional quantities.
+- Name units and timezones explicitly. Store instants in UTC and keep business dates (such as exchange trading dates) separate.
+- Do not log full third-party or licensed payloads. Keep configuration in validated environment settings.
 
 ## Maintainability
 
