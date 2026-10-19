@@ -1,6 +1,6 @@
 # Environments and Deployment
 
-- Suggested targets: production backend on Railway, staging backend on Render, frontend on Vercel. Confirm these fit the runtime, region, networking, and budget before setup.
+- Use the hosting targets confirmed in `project.md`. Confirm they fit the runtime, region, networking, and budget before setup.
 - Keep local, staging, and production configuration separate. Never reuse production secrets or sensitive data in staging.
 - Validate configuration at startup. Provide `.env.example` with safe placeholders. Secrets live in the platform secret manager.
 - Use explicit, repeatable build and start commands. Never depend on a developer's local state or undocumented manual steps.

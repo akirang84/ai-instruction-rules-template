@@ -5,7 +5,7 @@ Extends `security/security.md`.
 ## On-Device
 
 - The device and the app binary are untrusted. Never ship secrets, API keys with write power, or private keys in the bundle. Treat anything inside the app as extractable.
-- Store tokens and secrets only in the platform secure store (Keychain on iOS, Keystore-backed storage on Android) via `expo-secure-store` or equivalent. Never use plain AsyncStorage or the file system for credentials.
+- Store tokens and secrets only in the platform secure store (Keychain on iOS, Keystore-backed storage on Android) through the stack's secure-storage library. Never use plain key-value storage or the file system for credentials.
 - Keep sensitive data out of screenshots, the app-switcher snapshot, clipboard, logs, and backups when the data is sensitive. Exclude sensitive files from device backup.
 - Offer biometric or device-credential unlock for sensitive apps, as a local convenience that gates access to a stored token, not as a replacement for server authentication.
 - Use short-lived access tokens with refresh rotation and server-side revocation. Handle token expiry and forced logout cleanly.

@@ -1,17 +1,11 @@
-# Frontend Shared Baseline: Expo, React Native, Tamagui
+# Frontend Shared Baseline
 
-Applies to the web and mobile clients that share one codebase. `web/` and `mobile/` extend this file; all of it extends `coding/design/`.
-
-## Stack
-
-- React Native + Expo, Expo Router for navigation, React Native Web for browser builds. Confirm any departure from this baseline.
-- Tamagui for shared UI primitives and styling. Use theme tokens and reusable accessible components, not one-off visual values.
+Applies to every client (web and mobile), whatever the framework. `web/`, `mobile/`, and the frontend files in `stacks/frontend/` extend this file; all of it extends `coding/design/`.
 
 ## Structure
 
-- Screens compose and navigate. Reusable behavior lives in hooks, services, and domain modules. Avoid giant components and imports into another feature's private internals.
-- Keep platform-specific behavior explicit through platform files (`.web.tsx`, `.native.tsx`) or small adapters. Verify shared code on iOS, Android, and web.
-- Build a design system once (tokens, primitives, patterns) and reuse it. Do not restyle per screen.
+- Screens and pages compose and navigate. Reusable behavior lives in services, hooks or stores, and domain modules. Avoid giant components and imports into another feature's private internals.
+- Build a design system once (tokens, primitives, patterns) and reuse it. Use theme tokens and reusable accessible components, not one-off visual values or per-screen restyling.
 
 ## State and Data
 
@@ -22,7 +16,7 @@ Applies to the web and mobile clients that share one codebase. `web/` and `mobil
 
 ## Language and Accessibility
 
-- English is the default locale. Route every user-visible string through the i18n library (confirm the library at project start). Preserve interpolation and pluralization; never concatenate translated fragments. Format dates, numbers, and currency by locale and user timezone.
+- English is the default locale. Route every user-visible string through the i18n library confirmed in `project.md`. Preserve interpolation and pluralization; never concatenate translated fragments. Format dates, numbers, and currency by locale and user timezone.
 - Support keyboard and screen reader use, labels and roles, touch targets, focus order, reduced motion, dynamic type, color contrast, responsive layouts, and safe areas.
 
 ## Security
