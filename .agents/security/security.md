@@ -4,7 +4,7 @@ Applies to every platform and tier. Web and mobile specs add platform detail on 
 
 ## Authentication
 
-- Use JWT access and refresh tokens through `@nestjs/passport`, unless the project has an approved identity provider or a confirmed alternative.
+- Use the authentication approach confirmed in `project.md` (default: short-lived JWT access tokens with rotating refresh tokens, or an approved identity provider). Stack files name the library.
 - Confirm token lifetime, refresh rotation and revocation, per-client storage and delivery, logout behavior, and account recovery during project setup.
 - Validate issuer, audience, expiry, and signature. Keep signing keys in the deployment secret store, never in source control.
 - Authentication does not establish permission. Enforce authorization on the server for every protected operation and check resource ownership.

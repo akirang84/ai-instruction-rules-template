@@ -1,6 +1,6 @@
 # Mobile Specification
 
-Platform-specific rules for iOS and Android apps (Expo / React Native baseline). Read in addition to the common rules, never instead of them.
+Platform-specific rules for iOS and Android apps (any mobile stack; framework detail lives in `stacks/frontend/`). Read in addition to the common rules, never instead of them.
 
 ## Precedence
 

@@ -40,5 +40,4 @@
 - Do not build speculative frameworks, generic layers, or extension mechanisms without a concrete use case.
 - Before adding a dependency, verify that its scope and maintenance cost are justified and that an existing project utility does not already solve the need.
 - Explain the extension point and its tests in the change summary.
-- Record confirmed decisions and trade-offs in `docs/architecture/decisions.md` (or the project's existing decision log).
-- Record important architectural decisions where the repository keeps design documentation, especially when the choice constrains future changes.
+- Record confirmed decisions and trade-offs, especially ones that constrain future changes, in the decision log named in `project.md`.

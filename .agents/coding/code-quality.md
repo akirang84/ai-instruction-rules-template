@@ -21,7 +21,7 @@
 - Keep domain logic deterministic and framework-free. Inject clocks, providers, repositories, and randomness.
 - Use decimal-safe arithmetic for money, prices, fees, taxes, and fractional quantities.
 - Name units and timezones explicitly. Store instants in UTC and keep business dates (such as exchange trading dates) separate.
-- Do not log full third-party or licensed payloads. Keep configuration in validated environment settings.
+- Do not log full third-party or licensed payloads.
 
 ## Maintainability
 

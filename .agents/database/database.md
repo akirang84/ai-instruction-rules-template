@@ -2,8 +2,8 @@
 
 ## Choices
 
-- PostgreSQL is the default. At project start recommend PostgreSQL or a specific alternative based on data shape, transaction needs, deployment constraints, and scale; confirm before committing.
-- Choose either TypeORM or Prisma with the user at project start. Do not combine them casually or switch later without explicit approval and a migration plan.
+- PostgreSQL is the default (`stacks/database/postgresql.md`). At project start recommend PostgreSQL or a specific alternative based on data shape, transaction needs, deployment constraints, and scale; record the choice in `project.md`.
+- Use one data-access tool (ORM or query builder) per service, confirmed in `project.md`. Do not combine them casually or switch later without explicit approval and a migration plan.
 
 ## Migrations
 
@@ -25,5 +25,5 @@
 
 ## Time
 
-- Store timestamps in UTC with `timestamptz`. Do not store local wall-clock time unless the domain requires it.
+- Store timestamps as timezone-aware instants in UTC. Do not store local wall-clock time unless the domain requires it.
 - Convert to the user's timezone only for presentation or user-local periods. Use `users.timezone` (IANA identifier) as the anchor: compute local period boundaries, then query with the matching UTC instants.

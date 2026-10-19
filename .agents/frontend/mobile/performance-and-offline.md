@@ -3,7 +3,7 @@
 ## Performance
 
 - Set budgets: cold start time, time to interactive, JS bundle size, app binary size, frame rate (60 fps; no sustained dropped frames), and memory. Measure on low-end physical devices and in release builds, never only in development mode on a simulator.
-- Use the Hermes engine and keep the startup path minimal: lazy-load screens and heavy modules, defer non-critical initialization, and keep the splash screen until the first useful render.
+- Keep the startup path minimal: lazy-load screens and heavy modules, defer non-critical initialization, and keep the splash screen until the first useful render.
 - Use virtualized lists with stable keys and memoized items for long lists. Avoid heavy work on the JS thread during interactions; move animations to the native driver or Reanimated worklets.
 - Optimize images: right-sized assets, caching, and modern formats. Avoid decoding large images on the UI path.
 - Control memory: release listeners, subscriptions, and timers; avoid retaining large objects across screens.

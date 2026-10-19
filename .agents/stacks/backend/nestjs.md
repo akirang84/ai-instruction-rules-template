@@ -1,6 +1,6 @@
-# Backend: NestJS and TypeScript
+# Stack: NestJS
 
-Stack-specific rules. They extend `coding/` and `coding/design/`; they never weaken them.
+Active when `project.md` lists `nestjs`. Extends `stacks/backend/node-typescript.md`, `coding/`, and `coding/design/`; never weakens them.
 
 ## Structure
 
@@ -12,21 +12,27 @@ Stack-specific rules. They extend `coding/` and `coding/design/`; they never wea
 
 ## Types
 
-- Never use `any`. Use `unknown` for dynamic data and narrow it with guards or schema validation. Avoid unsafe casts and non-null assertions; justify unavoidable ones locally.
 - Declare access modifiers explicitly. Mark stable fields and injected dependencies `readonly`.
-- Declare return types on all public methods. Keep types precise at API, domain, and persistence boundaries.
 
 ## Input, Errors, Config
 
 - Validate and transform every endpoint input with DTOs plus `class-validator` / `class-transformer`. Configure global validation to reject unknown fields where compatible with the contract.
 - Never trust client-supplied identifiers, ownership, roles, prices, or derived values.
-- Use domain-specific error classes extending `Error` with stable semantics. Map them to HTTP responses in a filter; never leak stack traces or internals.
-- Centralize configuration, validate required environment variables at startup, and fail fast. Never hardcode secrets.
+- Map domain errors to HTTP responses in an exception filter.
+- Use `@nestjs/config` with a validation schema for configuration.
+
+## Authentication
+
+- Default: JWT access and refresh tokens through `@nestjs/passport`, unless `project.md` confirms an identity provider or another approach. Follow `security/security.md`.
 
 ## API Behavior
 
 - Paginate collection endpoints with bounded limits.
-- Enforce authorization server-side, close to the resource or use case.
+- Enforce authorization server-side with guards and policies close to the resource or use case.
 - Make mutating endpoints idempotent where retries are possible (idempotency keys or natural keys).
-- Version breaking API changes and keep the API contract (OpenAPI) in sync with behavior.
-- Use structured logs with request/correlation IDs. Never log tokens, passwords, secrets, or sensitive personal data.
+- Version breaking API changes and keep the OpenAPI contract (`@nestjs/swagger`) in sync with behavior.
+- Use structured logs with request/correlation IDs.
+
+## Testing
+
+- Unit-test services with Nest's `Test.createTestingModule` and real collaborators where fast. Test HTTP behavior with `supertest` against the app module.
