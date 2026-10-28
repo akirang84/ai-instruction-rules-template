@@ -245,3 +245,4 @@ The repository's integration model is:
 All task work happens on isolated branches.
 All integration happens through Pull Requests.
 Never bypass this workflow unless explicitly instructed.
+NEVER add an attributor (Co-Authored-By, Claude-Session, "Generated with Claude Code", or similar lines) to commit messages or PR descriptions.
