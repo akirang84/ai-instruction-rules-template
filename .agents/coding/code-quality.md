@@ -3,6 +3,7 @@
 ## Implementation
 
 - Make the smallest complete change that solves the requested behavior. Avoid unrelated refactoring and formatting churn.
+- Stay in scope: only edit code that the current task requires. Do not modify unrelated code, even to fix a bug, style issue, or improvement you noticed there. If you think something else should change, stop and ask the user first; do not change it until they confirm.
 - Follow the language, framework, and neighboring-code conventions already established in the repository.
 - Prefer clear names and small, cohesive functions. Keep control flow and state changes easy to follow; avoid hidden side effects.
 - Reuse existing utilities and dependencies when they fit. Avoid duplicate logic, but do not introduce an abstraction solely to remove a small amount of repetition.
