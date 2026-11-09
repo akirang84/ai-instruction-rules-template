@@ -9,7 +9,8 @@ Rules come in three layers. Copy the whole structure (`AGENTS.md`, `CLAUDE.md`, 
 | Layer | Files | Changes per project? |
 |---|---|---|
 | **Locked** | `git/workflow.md` | Never. Not even through overrides. |
-| **Core** | `requirements/`, `coding/`, `security/`, `database/`, `devops/`, `frontend/` | No. Stack-agnostic rules for every project. Improve them in the template repository. |
+| **General** | `general/behavior.md` | Never. Behavioral guidelines for every agent, in every task. |
+| **Core** | `requirements/`, `coding/`, `security/`, `database/`, `devops/`, `frontend/` | Never. Stack-agnostic rules for every project. Improve them in the template repository. |
 | **Stacks** | `stacks/backend/`, `stacks/database/`, `stacks/frontend/` | No edits; a project activates the ones it uses in `project.md`. Each extends core and never weakens it. |
 | **Project** | `project.md` | Yes. Product, chosen stacks, commands, environments, decisions, and overrides. |
 
@@ -19,7 +20,7 @@ To add a stack (for example `stacks/frontend/react-web.md`), create it in the te
 
 ## What to Read per Task
 
-Always read `project.md` and the active stack files it lists. Then:
+Always read `project.md`, `general/behavior.md`, and the active stack files `project.md` lists. Then:
 
 | Task | Read |
 |---|---|
@@ -81,6 +82,10 @@ A stack rule never weakens a core rule. If they conflict, the core rule wins; st
 
 - [`project.md`](project.md) — per-project configuration: product, active stacks, commands, environments, overrides.
 - [`bootstrap.md`](bootstrap.md) — new-project setup questions.
+
+### General
+
+- [`general/behavior.md`](general/behavior.md) — behavioral guidelines for all agents: think first, stay simple, change surgically, verify goals.
 
 ### Git (locked)
 
